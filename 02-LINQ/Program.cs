@@ -6,8 +6,25 @@ using System.Threading.Tasks;
 using TSD.Linq.Cars;
 using System.Diagnostics;
 
+namespace ExtensionMethods
+{
+    public static class DiagnosticsExtensions
+     {
+        public static void PrintProcessesInfo(this Process[] processes)
+        {
+            long totalMem = 0;
+            foreach (Process process in processes) {
+                Console.WriteLine("ID: {0}, NAME: {1}, MEM: {2}", process.ProcessName, process.ProcessName, process.WorkingSet64);
+                totalMem += process.WorkingSet64;
+            }
+            Console.WriteLine("Total memory usage: {0}", totalMem);
+        }
+    }
+}
+
 namespace ConsoleApplication1
 {
+    using ExtensionMethods;  
     class Program
     {
         
@@ -56,6 +73,9 @@ namespace ConsoleApplication1
             Console.WriteLine("Get 3rd element: {0:S}", testCollection.Get(2));
             Console.WriteLine("Get 3rd element: {0:S}", testCollection.Get(2));
             Console.WriteLine("Collection is empty: {0:B}", testCollection.isEmpty());
+
+            Process[] allProcesses = Process.GetProcesses();
+            allProcesses.PrintProcessesInfo();
 
             Console.ReadLine();
 
