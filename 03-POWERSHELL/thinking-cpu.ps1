@@ -1,0 +1,1 @@
+get-Process | Where-Object { $_.CPU -ge 10 } | select Name, CPU | Out-File -FilePath ./out.txt
