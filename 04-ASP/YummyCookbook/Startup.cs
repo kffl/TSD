@@ -8,6 +8,9 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using YummyCookbook.Data;
+using Microsoft.EntityFrameworkCore;
+
 
 namespace YummyCookbook
 {
@@ -24,6 +27,9 @@ namespace YummyCookbook
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            services.AddDbContext<MvcRecipeContext>(options => 
+                options.UseSqlite(Configuration.GetConnectionString("MvcRecipeContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
