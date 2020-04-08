@@ -4,6 +4,19 @@
              xmlns:local="clr-namespace:WpfApp1"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary>
+            <DataTemplate x:Key="MyDataTemplate">
+                <Grid Margin="0,3">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="77"></ColumnDefinition>
+                        <ColumnDefinition Width="200"></ColumnDefinition>
+                        <ColumnDefinition Width="100"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="{Binding Id}" Grid.Column="0"></TextBlock>
+                    <TextBlock Text="{Binding Title}" Grid.Column="1"></TextBlock>
+                    <TextBlock Text="{Binding IsRead}" Grid.Column="2"></TextBlock>
+                </Grid>
+            </DataTemplate>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

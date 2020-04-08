@@ -5,8 +5,71 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
+        Title="MainWindow" Height="480.4" Width="799.2">
+        <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="73*"/>
+            <ColumnDefinition Width="721*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="3*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid HorizontalAlignment="Left" Margin="187.2,66,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+
+        <Grid ButtonBase.Click="Grid_Click" Grid.Row="1" Grid.ColumnSpan="2" Margin="0,0,-0.4,0">
+            <Grid.Background>
+                <SolidColorBrush Color="Green">
+                    <SolidColorBrush.Opacity>
+                        <Binding ElementName="MySlider" Path="Value" />
+                    </SolidColorBrush.Opacity>
+                </SolidColorBrush>
+            </Grid.Background>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Content="My Books"></Label>
+            <ListBox ItemTemplate="{StaticResource MyDataTemplate}" Name="MyListView" HorizontalAlignment="Left" Height="181" Margin="10,36,0,0" VerticalAlignment="Top" Width="377">
+                <ListBox.Template>
+                    <ControlTemplate>
+                        <ScrollViewer HorizontalScrollBarVisibility="Hidden">
+                            <DockPanel LastChildFill="True">
+                                <Grid DockPanel.Dock="Top" Height="30">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="77"></ColumnDefinition>
+                                        <ColumnDefinition Width="200"></ColumnDefinition>
+                                        <ColumnDefinition Width="100"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Grid.Column="0">Id</Label>
+                                    <Label Grid.Column="1">Title</Label>
+                                    <Label Grid.Column="2">IsRead</Label>
+                                </Grid>
+                                <ItemsPresenter></ItemsPresenter>
+                            </DockPanel>
+                        </ScrollViewer>
+                    </ControlTemplate>
+                </ListBox.Template>
+            </ListBox>
+            <Label Content="ID" Grid.Column="1" HorizontalAlignment="Left" Margin="33.2,18,0,0" VerticalAlignment="Top"/>
+            <Label Content="Author" Grid.Column="1" HorizontalAlignment="Left" Margin="33.2,49,0,0" VerticalAlignment="Top" Width="58"/>
+            <Label Content="Title" Grid.Column="1" HorizontalAlignment="Left" Margin="33.2,80,0,0" VerticalAlignment="Top" Width="58"/>
+            <Label Content="Year" Grid.Column="1" HorizontalAlignment="Left" Margin="33.2,111,0,0" VerticalAlignment="Top" Width="58"/>
+            <Label Content="Format" Grid.Column="1" HorizontalAlignment="Left" Margin="33.2,175,0,0" VerticalAlignment="Top" Width="58"/>
+            <Label Content="{Binding ElementName=MyListView, Path=SelectedItem.Id}" Grid.Column="1" HorizontalAlignment="Left" Margin="126.2,18,0,0" VerticalAlignment="Top" RenderTransformOrigin="3.429,0.695" Width="40" AutomationProperties.Name="IDLabel"/>
+            <TextBox Text="{Binding ElementName=MyListView, Path=SelectedItem.Author, Mode=TwoWay}" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="126.2,52,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="218" AutomationProperties.Name="AuthorTextBox"/>
+            <TextBox Text="{Binding SelectedItem.Title, ElementName=MyListView, Mode=TwoWay}" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="126.2,83,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="218" AutomationProperties.Name="AuthorTextBox"/>
+            <TextBox Text="{Binding SelectedItem.Year, ElementName=MyListView, Mode=TwoWay}" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="126.2,114,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="218" AutomationProperties.Name="AuthorTextBox"/>
+            <CheckBox IsChecked="{Binding SelectedItem.IsRead, ElementName=MyListView, Mode=TwoWay}" Content="IsRead" Grid.Column="1" HorizontalAlignment="Left" Margin="126.2,153,0,0" VerticalAlignment="Top"/>
+            <ComboBox SelectedItem="{Binding SelectedItem.Format, ElementName=MyListView, Mode=TwoWay}" Name="FormatComboBox" Grid.Column="1" HorizontalAlignment="Left" Margin="126.2,178,0,0" VerticalAlignment="Top" Width="218"/>
+            <Button Name="DeleteButton" Content="Delete" Grid.Column="1" HorizontalAlignment="Left" Margin="33.2,241,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_1" />
+        </Grid>
+        <Label Grid.Row="0" Content="Logo" BorderThickness="0,0,0,2" BorderBrush="Black" Grid.ColumnSpan="2" Margin="0,0,-0.4,0"></Label>
+        <Slider Name="MySlider" HorizontalAlignment="Left" Margin="31.2,41,0,0" Grid.Row="2" VerticalAlignment="Top" RenderTransformOrigin="-13.9,0.648" Width="334" Maximum="1" Grid.Column="1"/>
+        <TextBox Name="MyTextbox" HorizontalAlignment="Left" Height="23" Margin="577.2,31,0,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="{Binding ElementName=MySlider, Path=Value, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" Grid.Column="1"></TextBox>
+        <Label Content="Value" HorizontalAlignment="Left" Margin="499.2,28,0,0" Grid.Row="2" VerticalAlignment="Top" Width="64" Grid.Column="1"/>
+        <Label Content="Adjust the darkness:" HorizontalAlignment="Left" Margin="32,10,0,0" Grid.Row="2" VerticalAlignment="Top" RenderTransformOrigin="-5.833,-0.383" Width="198" Grid.ColumnSpan="2"/>
+        <Button Content="Add" HorizontalAlignment="Left" Margin="10,241.4,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Grid.ColumnSpan="2" Click="Button_Click"/>
     </Grid>
 </Window>

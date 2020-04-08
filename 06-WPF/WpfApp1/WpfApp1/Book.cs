@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HomeLibrary
+namespace WpfApp1
 {
     public class Book
     {
@@ -20,10 +20,20 @@ namespace HomeLibrary
 
         public BookFormat Format { get; set; }
 
+        private static int lastId = 0;
+
         public Book(int id)
         {
             Id = id;
+            if (id > lastId)
+            {
+                lastId = id;
+            }
+        }
 
+        public Book()
+        {
+            Id = ++lastId;
         }
     }
 
@@ -40,7 +50,7 @@ namespace HomeLibrary
             {
                 new Book(1){ Author = "J.K. Rowling", Format = BookFormat.EBook, IsRead = true, Title = "Harry Potter and the Philosopher's Stone", Year=1997},
 
-                new Book(1)
+                new Book(2)
                 {
                     Author = "J.K. Rowling", Format = BookFormat.EBook, IsRead = true, Title = "Harry Potter and the Chamber of Secrets",
                     Year = 1998
@@ -52,7 +62,7 @@ namespace HomeLibrary
 
                 new Book(5){Author = "Wayne Thomas Batson", Format = BookFormat.EBook, IsRead = true, Title = "Isle of Swords", Year = 2007},
 
-                new Book(5){Author = "Louis A. Meyer", Format = BookFormat.EBook, IsRead = true, Title = "Under the Jolly Roger", Year = 200},
+                new Book(6){Author = "Louis A. Meyer", Format = BookFormat.EBook, IsRead = true, Title = "Under the Jolly Roger", Year = 200},
 
             };
 
