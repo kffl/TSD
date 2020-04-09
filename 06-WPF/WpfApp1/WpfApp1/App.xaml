@@ -17,6 +17,7 @@
                     <TextBlock Text="{Binding IsRead}" Grid.Column="2"></TextBlock>
                 </Grid>
             </DataTemplate>
+            <ImageBrush x:Key="ImageResource" ImageSource="/images/image.png" />
         </ResourceDictionary>
     </Application.Resources>
 </Application>
