@@ -70,5 +70,20 @@ namespace WpfApp1
             if (e.OriginalSource == DeleteButton)
                 BooksCollection.Remove((Book)MyListView.SelectedItem);
         }
+
+        public static RoutedCommand MyCommand = new RoutedCommand();
+
+        void CustomRoutedCommand_Loaded(object sender, RoutedEventArgs e)
+        {
+            MyCommand.InputGestures.Add(new KeyGesture(Key.Delete));
+        }
+        private void CommandBinding_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+        private void CommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            BooksCollection.Remove((Book)MyListView.SelectedItem);
+        }
     }
 }
