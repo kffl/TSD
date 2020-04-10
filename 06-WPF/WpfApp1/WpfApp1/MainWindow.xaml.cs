@@ -31,14 +31,8 @@ namespace WpfApp1
 
         public MainWindow()
         {
-            Loaded += MainWindow_Loaded;
             InitializeComponent();
             MyListView.ItemsSource = BooksCollection;
-        }
-
-        private void MainWindow_Loaded(object sender, RoutedEventArgs e)
-        {
-            FormatComboBox.ItemsSource = Enum.GetValues(typeof(BookFormat)).Cast<BookFormat>();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -46,28 +40,9 @@ namespace WpfApp1
             BooksCollection.Add(new Book());
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            if (MyListView.SelectedItem != null)
-            {
-                MessageBoxResult result = MessageBox.Show("Do you want to delete selected book?",
-                                          "Confirmation",
-                                          MessageBoxButton.YesNo,
-                                          MessageBoxImage.Question);
-                if (result == MessageBoxResult.Yes)
-                {
-                    e.Handled = false;
-                }
-                else
-                {
-                    e.Handled = true;
-                }
-            }  
-        }
-
         private void Grid_Click(object sender, RoutedEventArgs e)
         {
-            if (e.OriginalSource == DeleteButton)
+            if (e.OriginalSource == DetailsUserControl.DeleteButton)
                 BooksCollection.Remove((Book)MyListView.SelectedItem);
         }
 
