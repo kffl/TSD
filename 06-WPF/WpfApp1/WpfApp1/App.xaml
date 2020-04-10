@@ -5,6 +5,7 @@
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
+            <local:BookTypeToColorConverter x:Key="BookTypeToColorConverterKey" />
             <DataTemplate x:Key="MyDataTemplate">
                 <Grid Margin="0,3">
                     <Grid.ColumnDefinitions>
@@ -12,9 +13,14 @@
                         <ColumnDefinition Width="200"></ColumnDefinition>
                         <ColumnDefinition Width="100"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <TextBlock Text="{Binding Id}" Grid.Column="0"></TextBlock>
-                    <TextBlock Text="{Binding Title}" Grid.Column="1"></TextBlock>
-                    <TextBlock Text="{Binding IsRead}" Grid.Column="2"></TextBlock>
+                    <Grid.Background>
+                        <SolidColorBrush Color="{Binding Format, Converter={StaticResource BookTypeToColorConverterKey}}">
+                        </SolidColorBrush>
+                    </Grid.Background>
+                    <TextBlock Text="{Binding Id}" Grid.Column="0" Style="{DynamicResource MyCustomStyle}">
+                    </TextBlock>
+                    <TextBlock Text="{Binding Title}" Grid.Column="1" Style="{DynamicResource MyCustomStyle}"></TextBlock>
+                    <TextBlock Text="{Binding IsRead}" Grid.Column="2" Style="{DynamicResource MyCustomStyle}"></TextBlock>
                 </Grid>
             </DataTemplate>
             <ImageBrush x:Key="ImageResource" ImageSource="/images/image.png" />
