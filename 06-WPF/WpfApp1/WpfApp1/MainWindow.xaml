@@ -9,6 +9,16 @@
     <Window.Resources>
         <ResourceDictionary Source="/WpfApp1;component/Dictionary1.xaml" />
     </Window.Resources>
+    <Window.InputBindings>
+        <KeyBinding Command="{x:Static local:Commands.MyCommand}" Key="Delete"/>
+    </Window.InputBindings>
+    <Window.CommandBindings>
+        <CommandBinding 
+            Command="{x:Static local:Commands.MyCommand}"
+            CanExecute="CommandBinding_CanExecute"
+            Executed="CommandBinding_Executed"
+         />
+    </Window.CommandBindings>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"></RowDefinition>
@@ -23,27 +33,40 @@
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Label Grid.Column="0" Content="My Books"></Label>
-            <ListBox ItemTemplate="{StaticResource MyDataTemplate}" Name="MyListView" HorizontalAlignment="Left" Height="181" Margin="10,36,0,0" VerticalAlignment="Top" Width="377">
-                <ListBox.Template>
-                    <ControlTemplate>
-                        <ScrollViewer HorizontalScrollBarVisibility="Hidden">
-                            <DockPanel LastChildFill="True">
-                                <Grid DockPanel.Dock="Top" Height="30">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="77"></ColumnDefinition>
-                                        <ColumnDefinition Width="200"></ColumnDefinition>
-                                        <ColumnDefinition Width="100"></ColumnDefinition>
-                                    </Grid.ColumnDefinitions>
-                                    <Label Grid.Column="0">Id</Label>
-                                    <Label Grid.Column="1">Title</Label>
-                                    <Label Grid.Column="2">IsRead</Label>
-                                </Grid>
-                                <ItemsPresenter></ItemsPresenter>
-                            </DockPanel>
-                        </ScrollViewer>
-                    </ControlTemplate>
-                </ListBox.Template>
-            </ListBox>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <ToolBarTray Background="White">
+                    <ToolBar Band="1" BandIndex="1">
+                        <Button Command="{x:Static local:Commands.MyCommand}">
+                            Delete
+                        </Button>
+                    </ToolBar>
+                </ToolBarTray>
+                <ListBox ItemTemplate="{StaticResource MyDataTemplate}" Name="MyListView" HorizontalAlignment="Left" Height="181" Margin="10,36,0,0" VerticalAlignment="Top" Width="377">
+                    <ListBox.Template>
+                        <ControlTemplate>
+                            <ScrollViewer HorizontalScrollBarVisibility="Hidden">
+                                <DockPanel LastChildFill="True">
+                                    <Grid DockPanel.Dock="Top" Height="30">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="77"></ColumnDefinition>
+                                            <ColumnDefinition Width="200"></ColumnDefinition>
+                                            <ColumnDefinition Width="100"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <Label Grid.Column="0">Id</Label>
+                                        <Label Grid.Column="1">Title</Label>
+                                        <Label Grid.Column="2">IsRead</Label>
+                                    </Grid>
+                                    <ItemsPresenter></ItemsPresenter>
+                                </DockPanel>
+                            </ScrollViewer>
+                        </ControlTemplate>
+                    </ListBox.Template>
+                </ListBox>
+            </Grid>
             <Label Content="ID" Grid.Column="1" HorizontalAlignment="Left" Margin="33.2,18,0,0" VerticalAlignment="Top"/>
             <Label Content="Author" Grid.Column="1" HorizontalAlignment="Left" Margin="33.2,49,0,0" VerticalAlignment="Top" Width="58"/>
             <Label Content="Title" Grid.Column="1" HorizontalAlignment="Left" Margin="33.2,80,0,0" VerticalAlignment="Top" Width="58"/>

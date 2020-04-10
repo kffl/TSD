@@ -16,7 +16,7 @@ namespace WpfApp1
 
                 if (obj == BookFormat.EBook)
                 {
-                    return "White";
+                    return "";
                 }
                 else
                 {
