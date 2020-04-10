@@ -67,18 +67,7 @@
                     </ListBox.Template>
                 </ListBox>
             </Grid>
-            <Label Content="ID" Grid.Column="1" HorizontalAlignment="Left" Margin="33.2,18,0,0" VerticalAlignment="Top"/>
-            <Label Content="Author" Grid.Column="1" HorizontalAlignment="Left" Margin="33.2,49,0,0" VerticalAlignment="Top" Width="58"/>
-            <Label Content="Title" Grid.Column="1" HorizontalAlignment="Left" Margin="33.2,80,0,0" VerticalAlignment="Top" Width="58"/>
-            <Label Content="Year" Grid.Column="1" HorizontalAlignment="Left" Margin="33.2,111,0,0" VerticalAlignment="Top" Width="58"/>
-            <Label Content="Format" Grid.Column="1" HorizontalAlignment="Left" Margin="33.2,175,0,0" VerticalAlignment="Top" Width="58"/>
-            <Label Content="{Binding ElementName=MyListView, Path=SelectedItem.Id}" Grid.Column="1" HorizontalAlignment="Left" Margin="126.2,18,0,0" VerticalAlignment="Top" RenderTransformOrigin="3.429,0.695" Width="40" AutomationProperties.Name="IDLabel"/>
-            <TextBox Text="{Binding ElementName=MyListView, Path=SelectedItem.Author, Mode=TwoWay}" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="126.2,52,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="218" AutomationProperties.Name="AuthorTextBox"/>
-            <TextBox Text="{Binding SelectedItem.Title, ElementName=MyListView, Mode=TwoWay}" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="126.2,83,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="218" AutomationProperties.Name="AuthorTextBox"/>
-            <TextBox Text="{Binding SelectedItem.Year, ElementName=MyListView, Mode=TwoWay}" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="126.2,114,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="218" AutomationProperties.Name="AuthorTextBox"/>
-            <CheckBox IsChecked="{Binding SelectedItem.IsRead, ElementName=MyListView, Mode=TwoWay}" Content="IsRead" Grid.Column="1" HorizontalAlignment="Left" Margin="126.2,153,0,0" VerticalAlignment="Top"/>
-            <ComboBox SelectedItem="{Binding SelectedItem.Format, ElementName=MyListView, Mode=TwoWay}" Name="FormatComboBox" Grid.Column="1" HorizontalAlignment="Left" Margin="126.2,178,0,0" VerticalAlignment="Top" Width="218"/>
-            <Button Name="DeleteButton" Content="Delete" Grid.Column="1" HorizontalAlignment="Left" Margin="33.2,241,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_1" />
+            <local:UserControl1 x:Name="DetailsUserControl" State="{Binding ElementName=MyListView, Path=SelectedItem}" Grid.Column="1" VerticalAlignment="Top" />
         </Grid>
         <Grid Grid.Row="0">
             <Grid.Background>
