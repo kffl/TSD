@@ -1,0 +1,35 @@
+﻿<UserControl x:Class="WpfApp1.UserControl1"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WpfApp1"
+             mc:Ignorable="d" 
+             d:DesignHeight="275" d:DesignWidth="398.864">
+    <Grid>
+        <Label Content="ID" Grid.Column="1" HorizontalAlignment="Left" Margin="33.2,18,0,0" VerticalAlignment="Top"></Label>
+        <Label Content="Author" Grid.Column="1" HorizontalAlignment="Left" Margin="33.2,49,0,0" VerticalAlignment="Top" Width="58"/>
+        <Label Content="Title" Grid.Column="1" HorizontalAlignment="Left" Margin="33.2,80,0,0" VerticalAlignment="Top" Width="58"/>
+        <Label Content="Year" Grid.Column="1" HorizontalAlignment="Left" Margin="33.2,111,0,0" VerticalAlignment="Top" Width="58"/>
+        <Label Content="Format" Grid.Column="1" HorizontalAlignment="Left" Margin="33.2,175,0,0" VerticalAlignment="Top" Width="58"/>
+        <Label Name="IDLabel" Grid.Column="1" HorizontalAlignment="Left" Margin="126.2,18,0,0" VerticalAlignment="Top" RenderTransformOrigin="3.429,0.695" Width="40" AutomationProperties.Name="IDLabel">
+            <TextBlock Text="{Binding Path=State.Id}">
+                <TextBlock.Style>
+                    <Style TargetType="TextBlock">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding State.IsRead}" Value="True">
+                                <Setter Property="TextDecorations" Value="Strikethrough"></Setter>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+        </Label>
+        <TextBox Text="{Binding Path=State.Author, Mode=TwoWay}" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="126.2,52,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="218" AutomationProperties.Name="AuthorTextBox"/>
+        <TextBox Text="{Binding Path=State.Title, Mode=TwoWay}" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="126.2,83,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="218" AutomationProperties.Name="AuthorTextBox"/>
+        <TextBox Text="{Binding Path=State.Year, Mode=TwoWay}" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="126.2,114,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="218" AutomationProperties.Name="AuthorTextBox"/>
+        <CheckBox IsChecked="{Binding Path=State.IsRead, Mode=TwoWay}" Content="IsRead" Grid.Column="1" HorizontalAlignment="Left" Margin="126.2,153,0,0" VerticalAlignment="Top"/>
+        <ComboBox SelectedItem="{Binding Path=State.Format, Mode=TwoWay}" Name="FormatComboBox" Grid.Column="1" HorizontalAlignment="Left" Margin="126.2,178,0,0" VerticalAlignment="Top" Width="218"/>
+        <Button Click="DeleteButton_Click" Name="DeleteButton" Content="Delete" Grid.Column="1" HorizontalAlignment="Left" Margin="33.2,241,0,0" VerticalAlignment="Top" Width="75"  />
+    </Grid>
+</UserControl>
